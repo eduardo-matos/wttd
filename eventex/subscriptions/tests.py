@@ -17,4 +17,4 @@ class SubscribeTest(TestCase):
         self.assertEqual(200, self.resp.status_code)
 
     def test_template(self):
-        self.assertTemplateUsed(self.resp, 'inscricao.html')
+        self.assertTemplateUsed(self.resp, 'subscriptions/inscricao.html')
