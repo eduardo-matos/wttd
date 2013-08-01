@@ -8,9 +8,10 @@ Replace this with more appropriate tests for your application.
 from django.test import TestCase
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class SubscribeTest(TestCase):
+    def setUp(self):
+        self.resp = self.client.get('/inscricao/')
+
+    def test_get(self):
+        'GET /inscricao/ deve retornar codigo 200'
+        self.assertEqual(200, self.resp.status_code)
