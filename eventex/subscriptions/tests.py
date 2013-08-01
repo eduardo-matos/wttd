@@ -15,3 +15,6 @@ class SubscribeTest(TestCase):
     def test_get(self):
         'GET /inscricao/ deve retornar codigo 200'
         self.assertEqual(200, self.resp.status_code)
+
+    def test_template(self):
+        self.assertTemplateUsed(self.resp, 'inscricao.html')
