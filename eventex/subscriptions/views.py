@@ -3,6 +3,7 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
+from django.core.urlresolvers import reverse as r
 
 
 def inscricao(request):
@@ -24,6 +25,6 @@ def create(request):
         return render(request, 'subscriptions/inscricao.html', {'form': form})
 
     obj = form.save()
-    return HttpResponseRedirect('/inscricao/%d/' % obj.pk)
+    return HttpResponseRedirect(r('subscriptions:detail', args=[obj.pk]))
 
 
