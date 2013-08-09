@@ -48,14 +48,14 @@ class SubscriptionUniqueTest(TestCase):
 
         self.assertRaises(IntegrityError, s.save)
 
-    def test_email_unique(self):
-        s = Subscription(
+    def test_email_is_not_unique(self):
+        Subscription.objects.create(
             name = 'Eduardo',
             cpf = '11111111111',
             email = 'eduardo@matos.com',
             phone = '21-99887766' 
         )
 
-        self.assertRaises(IntegrityError, s.save)
+        self.assertEqual(2, Subscription.objects.all().count())
 
         

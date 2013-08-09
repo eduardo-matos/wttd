@@ -17,8 +17,13 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_cpf(cpf='123')
         self.assertItemsEqual(['cpf'], form.errors)
 
+    def test_email_is_iptional(self):
+        'E-mail should be optional'
+        form = self.make_validated_cpf(email='')
+        self.assertFalse(form.errors)
+
     def make_validated_cpf(self, **kwargs):
-        data = dict(name='eduardo', email='edu@matos.com', cpf='1234abcde12', phone='21-12345678')
+        data = dict(name='eduardo', email='edu@matos.com', cpf='12345678901', phone='21-12345678')
         data.update(kwargs)
         form = SubscriptionForm(data)
         form.is_valid()
