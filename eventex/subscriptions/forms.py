@@ -23,7 +23,6 @@ class SubscriptionForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         words = name.split()
-        for index, word in enumerate(words):
-            words[index] = word.capitalize()
+        words = map(lambda w: w.capitalize(), name.split())
         capitalized_name = ' '.join(words)
         return capitalized_name
