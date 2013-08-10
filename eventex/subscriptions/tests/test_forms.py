@@ -10,24 +10,24 @@ class SubscriptionFormTest(TestCase):
 
     def test_cpf_is_digit(self):
         'CPF must only accept digits'
-        form = self.make_validated_cpf(cpf='1234567abvc9')
+        form = self.make_validated_form(cpf='1234567abvc9')
         self.assertItemsEqual(['cpf'], form.errors)
 
     def test_cpf_has_11_digits(self):
-        form = self.make_validated_cpf(cpf='123')
+        form = self.make_validated_form(cpf='123')
         self.assertItemsEqual(['cpf'], form.errors)
 
     def test_email_is_iptional(self):
         'E-mail should be optional'
-        form = self.make_validated_cpf(email='')
+        form = self.make_validated_form(email='')
         self.assertFalse(form.errors)
 
     def test_name_should_be_capitalized(self):
-        form = self.make_validated_cpf(name='EDUARDO DE matos')
+        form = self.make_validated_form(name='EDUARDO DE matos')
         self.assertEqual('Eduardo De Matos', form.cleaned_data['name'])
 
 
-    def make_validated_cpf(self, **kwargs):
+    def make_validated_form(self, **kwargs):
         data = dict(name='eduardo', email='edu@matos.com', cpf='12345678901', phone='21-12345678')
         data.update(kwargs)
         form = SubscriptionForm(data)
