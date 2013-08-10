@@ -26,6 +26,11 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(name='EDUARDO DE matos')
         self.assertEqual('Eduardo De Matos', form.cleaned_data['name'])
 
+    def test_must_inform_email_or_phone(self):
+        'Phone or e-mail must be provided'
+        form = self.make_validated_form(phone='', email='')
+        self.assertItemsEqual(['__all__'], form.errors)
+
 
     def make_validated_form(self, **kwargs):
         data = dict(name='eduardo', email='edu@matos.com', cpf='12345678901', phone='21-12345678')
