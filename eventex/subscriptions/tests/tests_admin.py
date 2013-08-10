@@ -13,7 +13,9 @@ class MarkAsPaid(TestCase):
 
 	def test_mark_all(self):
 		fake_request = Mock()
-		queryset = Subscription.objects.all()
+
+		obj = Subscription.objects.create(name='edu', cpf='12345678901', email='a@a.com')
+		queryset = Subscription.objects.filter(pk=obj.pk)
 		self.model_admin.mark_as_paid(fake_request, queryset)
 
 		self.assertEqual(1, Subscription.objects.filter(paid=True).count())
