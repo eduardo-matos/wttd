@@ -5,5 +5,6 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('eventex.core.views',
+    url(r'^speaker/(?P<slug>[\w\-\_]+)', 'speaker_detail', name='speaker_detail'),
     url(r'^$', 'homepage', name='homepage'),
 )
