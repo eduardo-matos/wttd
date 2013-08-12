@@ -9,6 +9,9 @@ def homepage(request):
     return render_to_response('homepage.html')
 
 def speaker_detail(request, slug):
-	from django.http import HttpResponse
-	s = get_object_or_404(Speaker, slug=slug)
-	return render_to_response('core/speaker_detail.html', {'speaker': s})
+    s = get_object_or_404(Speaker, slug=slug)
+    return render_to_response('core/speaker_detail.html', {'speaker': s})
+
+def talk_list(request):
+    return render_to_response('core/talk_list.html')
+    
