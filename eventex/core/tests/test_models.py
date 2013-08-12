@@ -13,4 +13,5 @@ class SpeakerModelTest(TestCase):
     def test_create(self):
         self.assertEqual(1, Speaker.objects.all().count())
 
-    
+    def test_unicode(self):
+    	self.assertEqual('Eduardo Matos', unicode(self.speaker))

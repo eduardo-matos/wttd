@@ -29,3 +29,10 @@ class SpeakerDetailTest(TestCase):
     def test_context(self):
         speaker = self.resp.context['speaker']
         self.assertIsInstance(speaker, Speaker)
+
+    def test_404(self):
+        "Should return 404 when user doesn't exist"
+        url = r('core:speaker_detail', kwargs={'slug': 'john-doe'})
+        resp = self.client.get(url)
+
+        self.assertEqual(404, resp.status_code)

@@ -8,3 +8,6 @@ class Speaker(models.Model):
     url = models.URLField(_('Url'))
     slug = models.SlugField(_('Slug'))
     description = models.TextField(_('Descrição'), blank=True)
+
+    def __unicode__(self):
+    	return self.name
