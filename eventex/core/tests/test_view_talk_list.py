@@ -21,3 +21,9 @@ class TalkListTest(TestCase):
         self.assertContains(self.resp, u'desenvolvedor', 2)
         self.assertContains(self.resp, u'Eduardo Matos', 2)
         self.assertContains(self.resp, u'Descrição da palestra', 2)
+
+    def test_morning_talk_in_context(self):
+        self.assertIn('morning_talks', self.resp.context)
+
+    def test_afternoon_talk_in_context(self):
+        self.assertIn('afternoon_talks', self.resp.context)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from eventex.core.models import Contact, Speaker
+from eventex.core.models import Contact, Speaker, Talk
 
 class ContactInline(admin.TabularInline):
     model = Contact
@@ -10,3 +10,4 @@ class SpeakerAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Speaker, SpeakerAdmin)
+admin.site.register(Talk)
