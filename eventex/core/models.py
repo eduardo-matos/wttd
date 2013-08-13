@@ -10,6 +10,10 @@ class Speaker(models.Model):
     slug = models.SlugField(_('Slug'))
     description = models.TextField(_('Descrição'), blank=True)
 
+    class Meta:
+        verbose_name=_('palestrante')
+        verbose_name_plural=_('palestrantes')
+
     def __unicode__(self):
         return self.name
 
