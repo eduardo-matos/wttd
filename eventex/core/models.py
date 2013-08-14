@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from eventex.core.managers import KindContactManager
 from django.core.urlresolvers import reverse
+from model_utils.managers import QueryManager
 
 
 class PeriodManager(models.Manager):
@@ -58,7 +59,9 @@ class Talk(models.Model):
     start_time = models.TimeField(blank=True)
     speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrante'))
 
-    objects = PeriodManager()
+    objects = models.Manager()
+    morning = QueryManager(start_time__lt=time(12))
+    afternoon = QueryManager(start_time__gte=time(12))
 
     class Meta:
         verbose_name=_('palestra')

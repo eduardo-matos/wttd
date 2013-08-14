@@ -33,14 +33,10 @@ class TalkModelTest(TestCase):
 
         self.assertEqual(1, self.talk1.speakers.count())
 
-    def test_period_manager(self):
-        'Talk default manager must be a PeriodManager'
-        self.assertIsInstance(Talk.objects, PeriodManager)
-
     def test_talks_by_period(self):
         '''
         morning method must return only talks in the morning and
         afternoon talks mus return only talks in the afternoon
         '''
-        self.assertEqual(1, Talk.objects.in_the_morning().count())
-        self.assertEqual(1, Talk.objects.in_the_afternoon().count())
+        self.assertEqual(1, Talk.morning.count())
+        self.assertEqual(1, Talk.afternoon.count())
