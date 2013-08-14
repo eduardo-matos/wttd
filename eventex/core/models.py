@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from eventex.core.managers import KindContactManager
+from django.core.urlresolvers import reverse
 
 class Speaker(models.Model):
     name = models.CharField(_('Nome'), max_length=255)
@@ -16,6 +17,10 @@ class Speaker(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('core:speaker_detail', (), {'slug': self.slug})
 
 
 class Contact(models.Model):
@@ -49,3 +54,7 @@ class Talk(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('core:talk_detail', (self.pk,), {})

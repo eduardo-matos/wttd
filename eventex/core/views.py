@@ -18,3 +18,7 @@ def talk_list(request):
         'morning_talks': Talk.objects.filter(start_time__lt=midday),
         'afternoon_talks': Talk.objects.filter(start_time__gte=midday)
     })
+
+def talk_detail(request):
+    from django.http import HttpResponse
+    return HttpResponse()
