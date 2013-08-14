@@ -1,9 +1,19 @@
 # coding: utf-8
 
+from datetime import time
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from eventex.core.managers import KindContactManager
 from django.core.urlresolvers import reverse
+
+
+class PeriodManager(models.Manager):
+
+    def in_the_morning(self):
+        return self.filter(start_time__lt=time(12))
+
+    def in_the_afternoon(self):
+        return self.filter(start_time__gte=time(12))
 
 class Speaker(models.Model):
     name = models.CharField(_('Nome'), max_length=255)
@@ -47,6 +57,8 @@ class Talk(models.Model):
     description = models.TextField()
     start_time = models.TimeField(blank=True)
     speakers = models.ManyToManyField('Speaker', verbose_name=_('palestrante'))
+
+    objects = PeriodManager()
 
     class Meta:
         verbose_name=_('palestra')
