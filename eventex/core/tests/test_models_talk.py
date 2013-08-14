@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from django.test import TestCase
-from eventex.core.models import Talk, PeriodManager
+from eventex.core.models import Talk
 
 class TalkModelTest(TestCase):
     def setUp(self):

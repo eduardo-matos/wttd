@@ -8,14 +8,6 @@ from django.core.urlresolvers import reverse
 from model_utils.managers import QueryManager
 
 
-class PeriodManager(models.Manager):
-
-    def in_the_morning(self):
-        return self.filter(start_time__lt=time(12))
-
-    def in_the_afternoon(self):
-        return self.filter(start_time__gte=time(12))
-
 class Speaker(models.Model):
     name = models.CharField(_('Nome'), max_length=255)
     url = models.URLField(_('Url'))
@@ -73,3 +65,8 @@ class Talk(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('core:talk_detail', (self.pk,), {})
+
+
+class Course(Talk):
+    slots = models.IntegerField()
+    notes = models.TextField()
