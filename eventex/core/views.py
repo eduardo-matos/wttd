@@ -17,6 +17,6 @@ def talk_list(request):
         'afternoon_talks': Talk.afternoon.all()
     })
 
-def talk_detail(request):
-    from django.http import HttpResponse
-    return HttpResponse()
+def talk_detail(request, pk):
+    talk = get_object_or_404(Talk, pk=pk)
+    return render_to_response('core/talk_detail.html', {'talk': talk })

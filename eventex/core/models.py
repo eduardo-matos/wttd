@@ -70,3 +70,18 @@ class Talk(models.Model):
 class Course(Talk):
     slots = models.IntegerField()
     notes = models.TextField()
+
+
+class Media(models.Model):
+    MEDIA_TYPES = (
+        ('YT', _('Youtube')),
+        ('SL', _('Slideshare')),
+    )
+
+    talk = models.ForeignKey('Talk')
+    media_id = models.CharField(max_length=100)
+    title = models.CharField(max_length=200)
+    kind = models.CharField(max_length=2, choices=MEDIA_TYPES)
+
+    def __unicode__(self):
+        return '%s - %s' % (self.talk.title, self.title)
