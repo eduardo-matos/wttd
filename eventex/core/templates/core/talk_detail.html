@@ -4,4 +4,9 @@
     <h1>{{ talk.title }}</h1>
     <p>{{ talk.start_time }}</p>
     <p>{{ talk.description|linebreaks }}</p>
+
+    {% for media in talk.media_set.all %}
+    	{{ media.title }}
+    	{{ media.media_id }}
+    {% endfor %}
 {% endblock %}

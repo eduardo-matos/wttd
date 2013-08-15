@@ -7,3 +7,4 @@ from .test_view_talk_list_detail import *
 from .test_models_talk import *
 from .test_models_course import *
 from .test_models_media import *
+from .test_templatetags import *
