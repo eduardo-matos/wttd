@@ -43,5 +43,7 @@ class TalkModelTest(TestCase):
 
     def test_talk_has_media_property(self):
         Media.objects.create(title='Dummy title', media_id='abc123', kind='YT', talk=self.talk1)
+        Media.objects.create(title='Dummy title', media_id='abc123', kind='SL', talk=self.talk1)
 
         self.assertEqual(1, self.talk1.youtube.count())
+        self.assertEqual(1, self.talk1.slideshare.count())

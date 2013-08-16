@@ -13,3 +13,15 @@ class YoutubeTagTest(TestCase):
     def test_output(self):
         self.assertIn('<iframe', self.content)
         self.assertIn('/abc123', self.content)
+
+
+class SlideshareTagTest(TestCase):
+    def setUp(self):
+        context = Context({'id': 'abc123'})
+        template = Template('{% load slideshare %}{% slideshare id %}')
+
+        self.content = template.render(context)
+
+    def test_output(self):
+        self.assertIn('<iframe', self.content)
+        self.assertIn('/abc123', self.content)

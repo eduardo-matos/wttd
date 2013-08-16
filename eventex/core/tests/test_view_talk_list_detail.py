@@ -7,7 +7,8 @@ from eventex.core.models import Talk, Media
 class TalkListDetailTest(TestCase):
     def setUp(self):
         talk = Talk.objects.create(description=u'Descrição da palestra', title=u'Título da palestra', start_time='10:00')
-        media = Media.objects.create(title='Dummy title', media_id='abc123', kind='YT', talk=talk)
+        youtube_media = Media.objects.create(title='Dummy title YT', media_id='abc123', kind='YT', talk=talk)
+        slideshare_media = Media.objects.create(title='Dummy title SL', media_id='def456', kind='SL', talk=talk)
         self.resp = self.client.get(r('core:talk_detail', args=[talk.pk]))
 
     def test_status(self):
@@ -24,4 +25,7 @@ class TalkListDetailTest(TestCase):
 
     def test_media_in_content(self):
         self.assertContains(self.resp, 'abc123')
-        self.assertContains(self.resp, 'Dummy title')
+        self.assertContains(self.resp, 'Dummy title YT')
+
+        self.assertContains(self.resp, 'def456')
+        self.assertContains(self.resp, 'Dummy title SL')

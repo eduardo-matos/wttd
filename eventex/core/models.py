@@ -59,6 +59,10 @@ class Talk(models.Model):
     def youtube(self):
         return self.media_set.filter(kind='YT')
 
+    @property
+    def slideshare(self):
+        return self.media_set.filter(kind='SL')
+
     class Meta:
         verbose_name=_('palestra')
         verbose_name_plural=_('palestras')
