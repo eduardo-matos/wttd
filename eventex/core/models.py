@@ -55,6 +55,10 @@ class Talk(models.Model):
     morning = QueryManager(start_time__lt=time(12))
     afternoon = QueryManager(start_time__gte=time(12))
 
+    @property
+    def youtube(self):
+        return self.media_set.filter(kind='YT')
+
     class Meta:
         verbose_name=_('palestra')
         verbose_name_plural=_('palestras')

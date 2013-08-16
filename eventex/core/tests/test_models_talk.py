@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from django.test import TestCase
-from eventex.core.models import Talk
+from eventex.core.models import Talk, Media
 
 class TalkModelTest(TestCase):
     def setUp(self):
@@ -40,3 +40,8 @@ class TalkModelTest(TestCase):
         '''
         self.assertEqual(1, Talk.morning.count())
         self.assertEqual(1, Talk.afternoon.count())
+
+    def test_talk_has_media_property(self):
+        Media.objects.create(title='Dummy title', media_id='abc123', kind='YT', talk=self.talk1)
+
+        self.assertEqual(1, self.talk1.youtube.count())
