@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'eventex.core',
     'eventex.subscriptions',
     'eventex.myauth',
+    'eventex.profile',
 )
 
 AUTHENTICATION_BACKENDS = (
